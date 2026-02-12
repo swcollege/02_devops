@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SW College - Grow Beyond Limits</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #A50034;
+            --primary-dark: #8B002C;
+            --secondary-color: #333333;
+            --accent-color: #FF6B6B;
+            --light-bg: #F8F9FA;
+            --gradient-1: linear-gradient(135deg, #A50034 0%, #FF6B6B 100%);
+            --gradient-2: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-3: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --gradient-4: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            --gradient-5: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%);
+            --gradient-6: linear-gradient(135deg, #00c6fb 0%, #005bea 100%);
+            --gradient-7: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-8: linear-gradient(135deg, #5f2c82 0%, #49a09d 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.85rem;
+        }
+
+        .header-main {
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-link {
+            color: var(--secondary-color) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: var(--gradient-1);
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-keyword {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-slogan {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .year-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            padding: 50px 0;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Banner Cards */
+        .banner-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .banner-card {
+            border-radius: 16px;
+            padding: 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .banner-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .banner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .banner-card:hover::before {
+            opacity: 1;
+        }
+
+        .banner-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .banner-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .banner-subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .banner-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+
+        .banner-card:hover .banner-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Gradient Classes */
+        .gradient-1 { background: var(--gradient-1); }
+        .gradient-2 { background: var(--gradient-2); }
+        .gradient-3 { background: var(--gradient-3); }
+        .gradient-4 { background: var(--gradient-4); }
+        .gradient-5 { background: var(--gradient-5); }
+        .gradient-6 { background: var(--gradient-6); }
+        .gradient-7 { background: var(--gradient-7); }
+        .gradient-8 { background: var(--gradient-8); }
+
+        /* Center Content */
+        .center-content {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient-1);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .intro-text {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #666;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .feature-item {
+            background: var(--light-bg);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: #fff;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .feature-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Search Box */
+        .search-box {
+            background: var(--light-bg);
+            border-radius: 50px;
+            padding: 5px;
+            display: flex;
+            margin-top: 30px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 15px 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Quick Stats */
+        .quick-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .banner-column {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .banner-card {
+                flex: 1 1 calc(50% - 10px);
+                min-width: 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-keyword {
+                font-size: 2.5rem;
+            }
+
+            .hero-slogan {
+                font-size: 1.1rem;
+            }
+
+            .banner-card {
+                flex: 1 1 100%;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <span><i class="bi bi-building"></i> LG Electronics</span>
+                    <div>
+                        <a href="#" class="text-white text-decoration-none me-3">Korean</a>
+                        <a href="#" class="text-white text-decoration-none">Log in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-main">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="#" class="logo">SW <span>College</span></a>
+                    <nav>
+                        <a href="#" class="nav-link d-inline">교육과정</a>
+                        <a href="#" class="nav-link d-inline">로드맵</a>
+                        <a href="#" class="nav-link d-inline">인증제도</a>
+                        <a href="#" class="nav-link d-inline">커뮤니티</a>
+                        <a href="#" class="nav-link d-inline">FAQ</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content container">
+            <span class="year-badge">2026 SW College</span>
+            <h1 class="hero-keyword">Grow Beyond Limits</h1>
+            <p class="hero-slogan">"AI로 확장하는 당신의 가능성, 한계를 넘어 성장하세요."</p>
+            <p class="hero-description">
+                SW 개발자가 AI를 활용해 한계를 넘어 성장할 수 있도록, 기술 로드맵 기반 학습 설계와 맞춤형 큐레이션을 제공하며, 
+                온·오프라인 학습 문화와 실무 적용 사례를 강화합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="content-wrapper">
+            <!-- Left Banner Column -->
+            <div class="banner-column">
+                <a href="#" class="banner-card gradient-1 animate-fadeInUp delay-1">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-rocket-takeoff"></i></div>
+                        <div class="banner-title">SW Skill-up Course</div>
+                        <div class="banner-subtitle">재직자 과정</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-2 animate-fadeInUp delay-2">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-play-circle"></i></div>
+                        <div class="banner-title">러크TV</div>
+                        <div class="banner-subtitle">사내 과정</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-3 animate-fadeInUp delay-3">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-mortarboard"></i></div>
+                        <div class="banner-title">SW Bootcamp</div>
+                        <div class="banner-subtitle">신입 과정</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-4 animate-fadeInUp delay-4">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-award"></i></div>
+                        <div class="banner-title">SW전문가</div>
+                        <div class="banner-subtitle">전문가 인증</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+            </div>
+
+            <!-- Center Content -->
+            <div class="center-content">
+                <h2 class="section-title">SW College 안내</h2>
+                <p class="intro-text">
+                    SW College는 LG 소프트웨어 개발자의 성장을 지원하는 종합 교육 플랫폼입니다.<br>
+                    AI 시대에 맞는 최신 기술 역량을 갖출 수 있도록 다양한 교육 과정과 인증 제도를 운영합니다.
+                </p>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-map"></i></div>
+                        <div class="feature-title">기술 로드맵</div>
+                        <div class="feature-desc">체계적인 기술 로드맵 기반 학습 설계</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-stars"></i></div>
+                        <div class="feature-title">맞춤형 큐레이션</div>
+                        <div class="feature-desc">개인별 역량에 맞는 학습 콘텐츠 추천</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-laptop"></i></div>
+                        <div class="feature-title">온·오프라인 학습</div>
+                        <div class="feature-desc">시간과 장소에 구애받지 않는 학습 환경</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="bi bi-briefcase"></i></div>
+                        <div class="feature-title">실무 적용</div>
+                        <div class="feature-desc">현업 적용 사례 중심의 실전 학습</div>
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" placeholder="나에게 맞는 Coursework 검색하기">
+                    <button><i class="bi bi-search me-2"></i>검색</button>
+                </div>
+
+                <div class="quick-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">교육 과정</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">수료생</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">전문 강사진</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Banner Column -->
+            <div class="banner-column">
+                <a href="#" class="banner-card gradient-5 animate-fadeInUp delay-1">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-code-square"></i></div>
+                        <div class="banner-title">SW프로그래밍 역량인증 시험</div>
+                        <div class="banner-subtitle">프로그래밍 역량 검증</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-6 animate-fadeInUp delay-2">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-trophy"></i></div>
+                        <div class="banner-title">SW PM역량 인증 & Competition</div>
+                        <div class="banner-subtitle">PM 역량 인증</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-7 animate-fadeInUp delay-3">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-cpu"></i></div>
+                        <div class="banner-title">Embedded Professional 인증</div>
+                        <div class="banner-subtitle">임베디드 전문가 인증</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+
+                <a href="#" class="banner-card gradient-8 animate-fadeInUp delay-4">
+                    <div>
+                        <div class="banner-icon"><i class="bi bi-people"></i></div>
+                        <div class="banner-title">LG 소프트웨어 개발자 콘퍼런스</div>
+                        <div class="banner-subtitle">LG SDC</div>
+                    </div>
+                    <i class="bi bi-arrow-right banner-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">SW College</div>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">고객센터</a>
+                    <a href="#">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                © 2026 LG Electronics. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
